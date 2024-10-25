@@ -1,0 +1,28 @@
+Global key
+InitKeyboard();
+while 1
+pause(0.1);
+switch key
+case 'uparrow'
+Brick.MoveMotor('BC', 50);
+disp('Up Arrow Pressed!');
+case 'downarrow'
+Brick.MoveMotor('BC', -50);
+disp('Down Arrow Pressed!');
+case 'leftarrow'
+Brick.MoveMotor('C', 50);
+Brick.MoveMotor('B', -50);
+disp('Left Arrow Pressed!');
+case 'rightarrow'
+Brick.MoveMotor('B', 50);
+Brick.MoveMotor('C', -50);
+disp('Right Arrow Pressed!')
+case 0
+Brick.MoveMotor('BC', 0);
+Brick.MoveMotor('BC', 0);
+disp('No Key Pressed!');
+case 'q'
+break;
+end
+end
+CloseKeyboard();
