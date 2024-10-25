@@ -1,0 +1,7 @@
+while 1
+touch = brick.ToughPressed(1);
+brick.playTone(100, 300, 1000);
+if touch
+break;
+end
+end
