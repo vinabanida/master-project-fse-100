@@ -1,0 +1,58 @@
+InitKeyboard();
+condition = 1;
+brick.SetColorMode(4, 4); 
+while condition == 1
+    pause(0.1);
+    color = brick.ColorCode(4);
+    
+    switch color
+        case 5 
+            brick.MoveMotor('BC', 0);
+            disp('Red detected: Stopping for 1 second');
+            pause(1); 
+        case 3 
+            brick.MoveMotor('BC', 0); 
+            disp('Green detected: Beeping 2 times');
+            brick.beep();
+            pause(0.5);
+            brick.beep();
+            pause(0.5); 
+            brick.beep();
+        case 2 
+            brick.MoveMotor('BC', 0); 
+            disp('Blue detected: Beeping 3 times');
+            brick.beep(); 
+            pause(0.5); 
+            brick.beep(); 
+      
+    end
+   
+    switch key
+        case 'uparrow'
+            brick.MoveMotor('BC', 50);
+            disp('Up Arrow Pressed!');
+            
+        case 'downarrow'
+            brick.MoveMotor('BC', -50);
+            disp('Down Arrow Pressed!');
+            
+        case 'leftarrow'
+            brick.MoveMotor('C', 50);
+            brick.MoveMotor('B', -50);
+            disp('Left Arrow Pressed!');
+            
+        case 'rightarrow'
+            brick.MoveMotor('B', 50);
+            brick.MoveMotor('C', -50);
+            disp('Right Arrow Pressed!');
+            
+        case 'q'
+            brick.MoveMotor('BC', 0);
+            disp('No Key Pressed');
+            condition = 0; 
+            
+        otherwise
+            brick.MoveMotor('BC', 0); 
+    end
+end
+CloseKeyboard();
