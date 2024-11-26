@@ -1,0 +1,35 @@
+condition = 1;
+while (condition == 1)
+    dist1 = brick.UltrasonicDist(3);
+    dist2 = brick.UltrasonicDist(2);
+    display(dist1);
+    display(dist2);
+    if (dist2 > 70)
+        brick.MoveMotor('B',-50);
+        brick.MoveMotor('C',50);
+        pause(0.5);
+        brick.MoveMotor('BC', 50);
+        pause(2);
+    end
+    if(dist1 <15)
+        brick.MoveMotor('BC', -50);
+        pause(0.5);
+        brick.MoveMotor('B', 50);
+        brick.MoveMotor('C', -50);
+        pause(0.5);
+    end
+    if (dist2 < 10)
+        brick.MoveMotor('B', 50);
+        brick.MoveMotor('C', -50);
+        pause(0.2);
+        dist1 = brick.UltrasonicDist(3);
+        dist2 = brick.UltrasonicDist(2);
+        brick.MoveMotor('B', 50);
+        brick.MoveMotor('C', 50);
+        pause(0.1);
+    end
+    brick.MoveMotor('B', 50);
+    brick.MoveMotor('C', 50);
+    pause(0.5);
+end
+brick.StopAllMotors('Brake');
