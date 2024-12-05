@@ -1,0 +1,77 @@
+InitKeyboard();
+condition = 1;
+brick.setColorMode(4, 4);
+while (condition == 1)
+
+    dist1 = brick.UltrasonicDist(3);
+    dist2 = brick.UltrasonicDist(1);
+    color = brick.ColorCode (4);
+
+    switch color
+        case 5
+            brick.MoveMotor('BC', 0);
+            disp('Red detected: Stopping for 1 second');
+            pause(1); 
+        case 3 
+            brick.MoveMotor('BC', 0); 
+            disp('Green detected: Beeping 2 times');
+            brick.beep();
+            pause(0.5);
+            brick.beep();
+            pause(0.5); 
+            brick.beep();
+        case 2 
+            brick.MoveMotor('BC', 0); 
+            disp('Blue detected: Beeping 3 times');
+            brick.beep(); 
+            pause(0.5); 
+            brick.beep(); 
+      
+    end
+
+
+    display(dist1);
+    display(dist2);
+    if (dist2 > 70)
+        brick.MoveMotor('B',-50);
+        brick.MoveMotor('C',50);
+        pause(0.5);
+        brick.MoveMotor('BC', 50);
+        pause(2);
+    end
+
+    if(dist1 <15)
+        brick.MoveMotor('BC', -50);
+        pause(0.6);
+        brick.MoveMotor('B', 50);
+        brick.MoveMotor('C', -50);
+
+
+        pause(0.5);
+
+
+    end
+    if (dist2 < 10)
+
+
+
+        brick.MoveMotor('B', 50);
+        brick.MoveMotor('C', -50);
+
+        pause(0.2);
+
+        dist1 = brick.UltrasonicDist(3);
+        dist2 = brick.UltrasonicDist(2);
+
+
+        brick.MoveMotor('B', 50);
+        brick.MoveMotor('C', 50);
+        pause(0.1);
+    end
+    brick.MoveMotor('B', 50);
+    brick.MoveMotor('C', 50);
+    pause(0.5);
+
+end
+
+brick.StopAllMotors('Brake');
